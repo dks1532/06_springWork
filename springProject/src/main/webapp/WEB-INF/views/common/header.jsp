@@ -38,10 +38,13 @@
 		    <div class="collapse navbar-collapse" id="navbarSupportedContent">
 		      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
 		        <li class="nav-item">
-		          <a class="nav-link active" aria-current="page" href="#">Home</a>
+		          <a class="nav-link active" aria-current="page" href="${pageContext.request.contextPath}">Home</a>
 		        </li>
 		        <li class="nav-item">
-		          <a class="nav-link" href="#">게시판</a>
+		          <a class="nav-link" href="${pageContext.request.contextPath}/board/boardList.bo">게시판</a>
+		        </li>
+		        <li class="nav-item">
+		          <a class="nav-link" href="${pageContext.request.contextPath}/opendata/opendataList.do">공공데이터</a>
 		        </li>
 		        <li class="nav-item dropdown">
 		          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,12 +56,56 @@
 		          </ul>
 		        </li>
 		      </ul>
-		      <button class="btn btn-outline-success" type="button">로그인</button>&nbsp;
-		      <button class="btn btn-outline-success" type="button"
-		      	onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.me'">회원가입</button>
+
+		      <c:if test="${empty loginMember}">	
+			      <button class="btn btn-outline-success" type="button"
+			      	data-bs-toggle="modal" data-bs-target="#loginModal" >로그인</button>&nbsp;
+			      <button class="btn btn-outline-success" type="button"
+			      	onclick="location.href='${pageContext.request.contextPath}/member/memberEnroll.me'">회원가입</button>
+		      </c:if>
+		      <c:if test="${not empty loginMember}">
+		      	<a href="${pageContext.request.contextPath}/member/memberDetail.me">${loginMember.userName}님이 로그인 되었습니다</a>&emsp;
+		      	<button class="btn btn-outline-success" type="button"
+			      	onclick="location.href='${pageContext.request.contextPath}/member/memberLogout.me'">로그아웃</button>
+		      </c:if>
+		   
 		    </div>
 		  </div>
 		</nav>
+		
+		<!-- 로그인 모달창 -->
+		<div class="modal" tabindex="-1" id="loginModal">
+		  <div class="modal-dialog">
+		    <div class="modal-content">
+		      <div class="modal-header">
+		        <h5 class="modal-title">로그인</h5>
+		        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+		      </div>
+		      
+		      <form action="${pageContext.request.contextPath}/member/memberLogin.me" method="post">
+			      <div class="modal-body">
+			        <div class="mb-3 row">
+						<label for="name" class="col-sm-2 col-form-label">ID</label>
+						<div class="col-sm-10">
+							<input type="text" class="form-control" name="userId" required>
+						</div>
+					</div>
+					<div class="mb-3 row">
+						<label for="career" class="col-sm-2 col-form-label">PW</label>
+						<div class="col-sm-10">
+							<input type="password" class="form-control" name="userPwd" required>
+						</div>
+					</div>
+			      </div>
+
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">로그인</button>
+			        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">취소</button>
+			      </div>
+		      </form>
+		    </div>
+		  </div>
+		</div>
 	</header>
 	<section>
 

@@ -5,6 +5,8 @@
 
 <!-- <mapper namespace="member"> -->
 <mapper namespace="com.kh.spring.member.model.dao.MemberDao">
+	<resultMap type="member" id="memberMap"></resultMap>
+	
 	<insert id="insertMember">
 		insert into member
 		values (
@@ -16,7 +18,28 @@
 			#{phone},
 			default,
 			default
-			)
+		  )
 	</insert>
-
+	
+	<select id="selectOneMember" resultMap = "memberMap">
+		select *
+		  from member
+		 where user_id = #{userId} 
+	</select>
+	
+	<update id="updateMember">
+		update member
+		   set user_pwd = #{userPwd},
+		   	   email = #{email},
+		   	   phone = #{phone}
+		 where user_id = #{userId}		   	   
+	</update>
 </mapper>
+
+
+
+
+
+
+
+

@@ -70,12 +70,9 @@
 
 <script type="text/javascript">
 	const submit = (id) => {
-		frm.action = `${pageContext.request.contextPath}/demo/\${id}.do`; // \ 안넣으면 jquery로 인식
+		frm.action = `${pageContext.request.contextPath}/demo/\${id}.do`;	// \ 안넣으면 jquery로 인식
 		frm.submit();
 	}
-/* 	const submit = function(id) {
-	} */
-	// 스프링은 경로를 annotation을 기준으로 찾아감
 	const insertDev = () => {
 		frm.method = 'POST';
 		frm.action = '${pageContext.request.contextPath}/demo/insertDev.do';
@@ -83,3 +80,4 @@
 	}
 	
 </script>
+

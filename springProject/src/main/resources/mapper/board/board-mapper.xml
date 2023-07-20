@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kh.spring.board.model.dao.BoardDao">
+	<resultMap type="board" id="boardMap"></resultMap>
+	
+	<select id="selectBoardList" resultMap="boardMap">
+		select *
+		  from board
+		 order by board_no desc 
+	</select>
+	
+	<select id="selectTotalRecord" resultType="_int">
+		select count(*)
+		  from board
+	</select>
+	
+	<insert id="insertBoard">
+		insert into board
+		values(
+			seq_board_no.nextval,
+			#{boardTitle},
+			#{boardWriter},
+			#{content},
+			#{originalFilename},
+			#{changeFilename},
+			default,
+			default
+		)
+	</insert>
+	
+	<update id="updateCountBoard">
+		update board
+		   set count = count + 1
+		 where board_no = #{boardNo}  
+	</update>
+	
+	<select id="selectOneBoard" resultMap="boardMap">
+		select *
+		  from board
+		 where board_no = #{boardNo} 
+	</select>
+</mapper>
+
+
+
+
+
+
+
+

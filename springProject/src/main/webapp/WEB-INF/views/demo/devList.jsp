@@ -36,7 +36,7 @@
 				<fmt:formatDate value="${createDate}" pattern="yy-MM-dd HH:mm" />
 			</td>
 			<td>
-				<button type="button" class="btn btn-outline-success" onclick="updateDev(${dev.no})">수정</button>
+				<button type="button" class="btn btn-outline-success" onclick="updateDev(${dev.no});">수정</button>
 				<%-- <button type="button" class="btn btn-outline-success" onclick="location.href='${pageContext.request.contextPath}/demo/updateDev.do?no=${dev.no}'">수정</button> --%>
 			</td>
 		</tr>
@@ -49,3 +49,10 @@
 </script>
 
 <jsp:include page="/WEB-INF/views/common/footer.jsp" />
+
+
+
+
+
+
+

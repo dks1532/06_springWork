@@ -106,8 +106,8 @@ public class DemoController {
 		Dev dev = new Dev(0, name, career, email, gender, lang, LocalDateTime.now());
 		System.out.println("dev =" + dev);
 		
-		// 2. jsp전달	
-		model.addAttribute("dev", dev);		// request.setAttribute("dev", dev) 동일(스프링에서는 보통 request 사용안하고 model을 씀)
+		// 2. jsp전달
+		model.addAttribute("dev", dev);	// request.setAttribute("dev", dev) 동일(스프링에서는 보통 request 사용안하고 model을 씀)
 		return "demo/devResult";
 	}
 
@@ -156,3 +156,20 @@ public class DemoController {
 		return "redirect:/demo/devList.do";
 	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -4,7 +4,9 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
 
-<jsp:include page="/WEB-INF/views/common/header.jsp">
+
+<!-- include는 web-inf 폴더 접근가능, href 경로 지정은 접근불가 -->
+<jsp:include page="/WEB-INF/views/common/header.jsp">	
 	<jsp:param value="SPRING" name="title"/>
 </jsp:include>
 

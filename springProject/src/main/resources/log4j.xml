@@ -7,12 +7,47 @@
 		<param name="Target" value="System.out" />
 		<layout class="org.apache.log4j.PatternLayout">
 			<param name="ConversionPattern" value="%-5p: %c - %m%n" />
+			<!-- <param name="ConversionPattern" value="%-5p: %m - %c (%d{yyyy-MM-dd HH:mm:ss})%n" /> -->
+		</layout>
+	</appender>
+	<!-- 
+		- %p : 로그타입
+			  %-5p : 글자가 4개라도 1개의 공백을 채워 5글자자리차지
+		- $c : 로깅 이벤트 카테고리(보통 클래스이름 사용)
+		- $m : 메시지
+		- %n : 개행
+		- %L : 라인번호
+	 -->
+	 
+	<!-- 파일 출력용 Appender -->
+	<appender name="fileLogger" class="org.apache.log4j.DailyRollingFileAppender">
+		<param name="file" value="${catalina.base}/logs/logfileStorage/storageLog.Log" />
+		<param name="append" value="true" />
+		<param name="datePattern" value=".yy-MM-dd" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: [%d{yy-MM-dd HH:mm:ss}] %c(%L) - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="sqlLogger" class="org.apache.log4j.ConsoleAppender">
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%-5p: %m%n" />
 		</layout>
 	</appender>
 	
+	<!-- logger 수집 -->
 	<!-- Application Loggers -->
-	<logger name="com.kh.spring">
-		<level value="info" />
+	<logger name="jdbc.sqlonly" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="sqlLogger"/>
+	</logger>
+	<logger name="jdbc.resultsettable" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="sqlLogger"/>
+	</logger>
+
+	<logger name="com.kh.spring"> 
+		<level value="debug" /> <!-- info이상만 출력(info, warn, error, fatal) info 하위는 생략(debug, trace) -->
 	</logger>
 	
 	<!-- 3rdparty Loggers -->
@@ -36,6 +71,7 @@
 	<root>
 		<priority value="warn" />
 		<appender-ref ref="console" />
+		<appender-ref ref="fileLogger" />
 	</root>
 	
 </log4j:configuration>

@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="demo">
+<mapper namespace="com.kh.spring.demo.model.dao.DemoDao">
 	<resultMap type="dev" id="devMap">
 		<result column="no" property="no"/>
 		<result column="name" property="name"/>
@@ -34,13 +34,27 @@
 	<select id="selectOneDev" resultMap="devMap">
 		select *
 		  from dev
-		 where no = #{no}
+		 where no = #{no} 
 	</select>
 	<update id="updateDev">
 		update dev
 		   set career = #{career},
-		   	   email = #{email},
-		   	   lang = #{lang}
-		 where no = #{no}
+			   email = #{email},
+			   lang = #{lang}
+		 where no = #{no}		   	    
 	</update>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+

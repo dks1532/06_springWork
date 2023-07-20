@@ -1,6 +1,6 @@
-<%@page import="com.kh.spring.demo.model.vo.Dev, java.util.*"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.kh.spring.demo.model.vo.Dev, java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
@@ -73,13 +73,13 @@
 				${devLangList.contains('python') ? 'checked' : ''}>
 			<label class="form-check-label" for="inlineCheckbox3">Python</label>
 		</div>
-		<input type="hidden" name="no" value="${dev.no}">
+		<input type="hidden" name="no" value="${dev.no}"><br>
 		<button type="submit" class="btn btn-outline-secondary">dev 수정</button>
 	</form>
 </div>
 <script type="text/javascript">
 	document.frm.onsubmit = (e) => {
-		/* // 이름 한글 2글자 확인하는 절차
+		/* 
 		const name = e.target.name;
 		if(/^[가-힣]{2,}$/.test(name.value) == false) {
 			alert("한글로 2글자 이상 작성하세요");
@@ -93,4 +93,13 @@
 		}
 	}
 </script>
+
+
+
+
+
+
+
+
+
 

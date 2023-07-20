@@ -10,11 +10,22 @@
 	<context:property-placeholder location="classpath:datasource.properties"/>
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean class="org.apache.commons.dbcp.BasicDataSource" id="dataSource" destroy-method="close">
+	<bean class="org.apache.commons.dbcp.BasicDataSource" id="realDataSource" destroy-method="close">
 		<property name="driverClassName" value="${datasource.driverClassName}" />
 		<property name="url" value="${datasource.url}" />
-		<property name="username" value="${datasource.username}"/>
-		<property name="password" value="${datasource.password}" />
+		<property name="username" value="${datasource.username}"/>	
+		<property name="password" value="${datasource.password}" />	<!-- 비번 1234 -->
+	</bean>
+	
+	<!-- #16.1 log4jdbc-remix의 가짜 dataSource빈 생성 -->
+	<bean id="dataSource" class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="realDataSource" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="[SQL] " />
+			</bean>
+		</property>
 	</bean>
 	
 	<bean class="org.mybatis.spring.SqlSessionFactoryBean" id="sqlSessionFactoryBean">
@@ -28,5 +39,6 @@
 	</bean>
 	
 	<!-- #6.2 해당인터페이스 구현 객체를 동적으로 생성하여 빈으로 사용 -->
-	<mybatis-spring:scan base-package="com.kh.spring.**.dao"/>	<!-- 이경로에 있는 implement를 자동으로 만들어줌 -->
+	<mybatis-spring:scan base-package="com.kh.spring.**.dao"/>
+		<!-- 이경로에 있는 implement를 자동으로 만들어줌 -->
 </beans>

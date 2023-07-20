@@ -1,0 +1,25 @@
+src java
+member, board, common
+
+com.kh.mybatis.member.controller	: servlet파일들
+com.kh.mybatis.member.model.vo	: bean파일들
+com.kh.mybatis.member.model.service	: DB의 실행결과 리턴
+com.kh.mybatis.member.model.dao	: 기존 Mgr => mybatis에서 Mgr연결
+
+com.kh.mybatis.board.controller
+com.kh.mybatis.board.model.vo
+com.kh.mybatis.board.model.service
+com.kh.mybatis.board.model.dao
+
+com.kh.mybatis.common.template	: mybatis와 연결하여 DB의 sqlSession얻어오기
+com.kh.mybatis.common.filter
+com.kh.mybatis.common.model.vo
+
+폴더와 파일
+webapp/index.jsp
+
+webapp/WEB-INF/views/main.jsp
+
+webapp/WEB-INF/views/board
+webapp/WEB-INF/views/common
+webapp/WEB-INF/views/member

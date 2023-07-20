@@ -21,6 +21,51 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<!-- #9.1. jsonView 빈 등록 -->
+	<beans:bean id="jsonView" class="net.sf.json.spring.web.servlet.view.JsonView">
+		<beans:property name="contentType" value="application/json;charset=UTF-8"/>
+	</beans:bean>
+	
+	<!-- #9.2 BeanNameViewResolver 빈 등록  -->
+	<beans:bean id="viewResolver" class="org.springframework.web.servlet.view.BeanNameViewResolver">
+		<!-- 우선순위를 InternalResourceViewResolver보다 높게 설정 -->
+		<beans:property name="order" value="1"/>
+	</beans:bean>
+	
+	<!-- base-package하위의 @Component클래스를 servlet-context에 빈으로 등록해서 관리 -->
 	<context:component-scan base-package="com.kh.spring" />
 	
+	<!-- #8. Interceptor 등록 -->
+	<interceptors>
+		<interceptor>
+			<mapping path="/**"/>
+			<beans:bean class="com.kh.spring.common.interceptor.LoggerInterceptor" />
+		</interceptor>
+		<interceptor>
+			<mapping path="/member/memberDetail.me"/>
+			<mapping path="/member/memberUpdate.me"/>
+			<mapping path="/board/**.bo"/>
+			<exclude-mapping path="/board/boardList.bo"/>
+			<exclude-mapping path="/board/boardDetail.bo"/>
+			<exclude-mapping path="/board/fileDownload.bo"/>
+			<beans:bean class="com.kh.spring.common.interceptor.LoginInterceptor" />
+		</interceptor>
+	</interceptors>
+	
+	<!-- #10.1 파일업로드 처리용 MultipartResolver 빈 등록 -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSizePerFile" value="10485760" />
+		<beans:property name="maxInMemorySize" value="10240"/>
+	</beans:bean>
+
 </beans:beans>
+
+
+
+
+
+
+
+
+
+

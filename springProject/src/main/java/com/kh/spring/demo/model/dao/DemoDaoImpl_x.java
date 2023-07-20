@@ -9,9 +9,9 @@ import org.springframework.stereotype.Repository;
 import com.kh.spring.demo.model.vo.Dev;
 
 // DB관련
-@Repository
-public class DemoDaoImpl implements DemoDao{
-
+// @Repository
+public class DemoDaoImpl_x  /* implements DemoDao */ {
+/*
 	@Autowired
 	private SqlSessionTemplate session;
 	
@@ -34,5 +34,5 @@ public class DemoDaoImpl implements DemoDao{
 	public int updateDev(Dev dev) {
 		return session.update("demo.updateDev",dev);
 	}
-
+*/
 }
